@@ -1,0 +1,19 @@
+{
+  "_comment": "d=3 HPC2 markers, used with the PRODUCER-ANCHORED gadget (pini_hpc3.c MARKV). Feed to your ORIGINAL ooolyzer_iew.py. Ids decimal: z12=18 z13=19 z21=33 z23=35 z31=49 z32=50 f1=241 f2=242 f3=243. Pairs are cross-domain (independent data chains) where the OoO backend has freedom to reorder; the last pair is a same-domain control (f3 truly depends on z31, so it should NOT invert).",
+  "markers": {
+    "z12": 18, "z13": 19,
+    "z21": 33, "z23": 35,
+    "z31": 49, "z32": 50,
+    "f1": 241, "f2": 242, "f3": 243
+  },
+  "pairs": [
+    ["z13", "z31"],
+    ["z13", "z32"],
+    ["z12", "z31"],
+    ["z23", "z31"],
+    ["z12", "z32"],
+    ["z13", "z23"],
+    ["z31", "f3"]
+  ],
+  "delta": 1
+}

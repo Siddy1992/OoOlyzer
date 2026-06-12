@@ -1,0 +1,60 @@
+{
+  "_about": "OoOLyzer share/conflict config for the uploaded RISCV_masked-PRESENT.S.",
+
+  "_register_abi": {
+    "s1": 9, "s2": 18, "s3": 19, "s4": 20, "s5": 21,
+    "t1": 6, "t2": 7, "t3": 28, "t4": 29,
+    "a0": 10, "a1": 11, "a2": 12, "a3": 13,
+    "s8": 24, "s9": 25, "s10": 26, "s11": 27,
+    "t0": 5, "t5": 30
+  },
+
+  "arch_map": {
+    "9":  "b0", "6":  "b1",
+    "18": "c0", "7":  "c1",
+    "19": "d0", "28": "d1",
+    "20": "avar0", "29": "avar1"
+  },
+
+  "_arch_map_note": "Stable share banks in the S-box body: s1/t1=b, s2/t2=c, s3/t3=d, s4/t4=a. avar0/avar1 (s4/t4) is the dominant channel; 'avar' avoids clashing with the RISC-V a0/a1 register names. These labels are valid in the main S-box body; inside the affine subfunctions t1/t2/t3 are reused as scratch, so labels there are unreliable -- the auto-discovery mode, not these labels, is what covers those phases.",
+
+  "conflicts": [
+    ["b0", "b1"],
+    ["c0", "c1"],
+    ["d0", "d1"],
+    ["avar0", "avar1"]
+  ],
+
+  "reused_registers": {
+    "21": "s5_crossproduct",
+    "10": "affarg0", "11": "affarg1", "12": "affarg2", "13": "affarg3",
+    "24": "s8_shifttmp", "25": "s9_shifttmp",
+    "26": "s10_shifttmp", "27": "s11_shifttmp"
+  },
+  "_reused_note": "These registers change meaning by phase (a0-a3 hold both shares of b/c/d/a across the two affine calls; s5 cycles through a0c0/a0c1/a1c1/a1c0/...; s8/s9 take bytes of whatever share is being rotated). A static label is wrong for them, so they are NOT in arch_map. They are listed so auto-discovery can flag and prioritize them.",
+
+  "cross_domain_operand_sites": {
+    "_note": "Instructions reading one operand from each domain in a single op -> ALU/computation-level recombination, reported under the IEW/co-residency finding, not RIL. PCs to be filled once symbol addresses are resolved; matched for now by instruction pattern.",
+    "patterns": [
+      "and s5, s4, t2", "and s5, s2, t4",
+      "and s5, s4, t3", "and s5, s3, t4"
+    ]
+  },
+
+  "auto_discovery": {
+    "enabled": true,
+    "report_all_pairs": true,
+    "_desc": "Label-free RIL detection: for every physical register, flag consecutive writes whose owning architectural registers differ (no intervening write, by construction), regardless of arch_map/conflicts. arch_map only annotates; conflicts only optionally filter.",
+    "min_hd": 1,
+    "rank_by": "hd",
+    "per_bit_lane": true,
+    "_per_bit_lane_note": "Bitsliced: each of the 32 bit positions is an independent S-box. Report per-lane HD contribution as well as whole-word HD, so severity is not the misleading 32-bit figure."
+  },
+
+  "analyzer": {
+    "tau_max_ticks": 100000,
+    "collapse_window_ticks": 0,
+    "symbol_filter": ["sbox"],
+    "_symbol_filter_note": "Restrict analysis to the sbox symbol range once ELF symbols are resolved; empty list = whole program."
+  }
+}

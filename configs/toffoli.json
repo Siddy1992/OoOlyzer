@@ -1,0 +1,44 @@
+{
+  "_about": "OoOLyzer config for workloads/toffoli (masked Toffoli gate).",
+
+  "_register_abi": {
+    "a0": 10, "a1": 11, "a2": 12, "a3": 13, "a4": 14, "a5": 15, "t0": 5
+  },
+
+  "arch_map": {
+    "10": "a_s0", "13": "a_s1",
+    "11": "b_s0", "14": "b_s1",
+    "12": "c_s0", "15": "c_s1"
+  },
+  "_arch_map_note": "x10/x13 = variable a's shares; x11/x14 = b's shares; x12/x15 = c's shares (the accumulated outputs). The paper's danger pairs {a0,a3},{a1,a4},{a2,a5} are exactly these.",
+
+  "conflicts": [
+    ["a_s0", "a_s1"],
+    ["b_s0", "b_s1"],
+    ["c_s0", "c_s1"]
+  ],
+
+  "reused_registers": {
+    "5": "t0_crossproduct"
+  },
+  "_reused_note": "t0 (x5) holds a0b0 -> a0b1 -> a1b1 -> a1b0 in succession; consecutive writes to its physical register are RIL candidates mixing share-0 and share-1 products.",
+
+  "cross_domain_operand_sites": {
+    "_note": "Instructions reading one operand from each domain (ALU/computation-level recombination, reported under IEW/co-residency, not RIL).",
+    "patterns": ["and t0, a0, a4", "and t0, a3, a1"]
+  },
+
+  "auto_discovery": {
+    "enabled": true,
+    "report_all_pairs": true,
+    "min_hd": 1,
+    "rank_by": "hd",
+    "per_bit_lane": true
+  },
+
+  "analyzer": {
+    "tau_max_ticks": 100000,
+    "collapse_window_ticks": 0,
+    "symbol_filter": ["toffoli"]
+  }
+}
