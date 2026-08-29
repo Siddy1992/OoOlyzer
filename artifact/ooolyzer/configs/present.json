@@ -1,0 +1,95 @@
+{
+  "arch_map": {
+    "9": "b0",
+    "6": "b1",
+    "18": "c0",
+    "7": "c1",
+    "19": "d0",
+    "28": "d1",
+    "20": "avar0",
+    "29": "avar1"
+  },
+  "conflicts": [
+    [
+      "b0",
+      "b1"
+    ],
+    [
+      "c0",
+      "c1"
+    ],
+    [
+      "d0",
+      "d1"
+    ],
+    [
+      "avar0",
+      "avar1"
+    ]
+  ],
+  "reused_registers": {
+    "21": "s5_crossproduct",
+    "10": "affarg0",
+    "11": "affarg1",
+    "12": "affarg2",
+    "13": "affarg3",
+    "24": "s8_shifttmp",
+    "25": "s9_shifttmp",
+    "26": "s10_shifttmp",
+    "27": "s11_shifttmp"
+  },
+  "analysis": {
+    "mode": "ril",
+    "width": 32,
+    "strict": true,
+    "min_hd": 1,
+    "filter_conflicts": false
+  },
+  "gem5": {
+    "prf": 192,
+    "rob": 256,
+    "iq": 64,
+    "width": 4,
+    "clk": "2.5GHz",
+    "l1i": "32KiB",
+    "l1d": "32KiB",
+    "l2": "512KiB",
+    "mem": "512MiB"
+  },
+  "expected": {
+    "strict_candidates": 51707,
+    "conflict_candidates": 344,
+    "inorder_conflicts": 0,
+    "channels": {
+      "19-28": {
+        "count": 153,
+        "hd_max": 23,
+        "hd_mean": 9.59
+      },
+      "7-18": {
+        "count": 124,
+        "hd_max": 14,
+        "hd_mean": 7.91
+      },
+      "20-29": {
+        "count": 66,
+        "hd_max": 13,
+        "hd_mean": 7.77
+      },
+      "6-9": {
+        "count": 1,
+        "hd_max": 18,
+        "hd_mean": 18.0
+      }
+    },
+    "loose_candidates": 52002,
+    "representative": {
+      "phys": 74,
+      "arch_old": 29,
+      "arch_new": 20,
+      "val_old": "0x0000c144",
+      "val_new": "0x00007fb9",
+      "hd": 13
+    }
+  }
+}

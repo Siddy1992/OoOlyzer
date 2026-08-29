@@ -1,0 +1,23 @@
+Target platform: SiFive Performance P550 / RV64 Linux
+Prebuilt binary format: ELF64 RISC-V, PIE, RVC, double-float ABI
+Dynamic loader: /lib/ld-linux-riscv64-lp64d.so.1
+C library dependency: libc.so.6
+Compiler recorded in binary: GCC (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+
+Temperature sensor paths used by the harness:
+  /sys/devices/platform/soc/50b00000.pvt/hwmon/hwmon1/temp1_input
+  /sys/devices/platform/soc/52360000.pvt/hwmon/hwmon2/temp1_input
+
+Collection constants in the supplied C harness:
+  REPEAT=24
+  OUTER_REPEAT=6000
+  COOL_SEC=8
+  SETTLE_SEC=2
+  AVG_READS=9
+  AVG_GAP_US=200000
+
+Archived experiment driver settings:
+  baseline passes=1
+  adaptive rounds=3
+  adaptive passes per round=2
+  CPU pinning=core 0

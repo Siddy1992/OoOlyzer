@@ -1,0 +1,23 @@
+{
+  "present": {
+    "strict_candidates": 51707,
+    "conflict_candidates": 344,
+    "channels": {
+      "d0/d1": {"count": 153, "hd_max": 23, "hd_mean": 9.59},
+      "c0/c1": {"count": 124, "hd_max": 14, "hd_mean": 7.91},
+      "a0/a1": {"count": 66, "hd_max": 13, "hd_mean": 7.77},
+      "b0/b1": {"count": 1, "hd_max": 18, "hd_mean": 18.0}
+    },
+    "inorder_conflicts": 0
+  },
+  "toffoli": {
+    "a_s0/a_s1": {"count": 1999, "hd": 32},
+    "b_s0/b_s1": {"count": 1999, "hd": 32},
+    "c_s0/c_s1": {"count": 3998, "hd_mean": 14, "hd_max": 16}
+  },
+  "pini_baseline": {
+    "M1": {"tagged": 448, "formal": 96, "local": 96, "cross": 0, "prf_hd1": 32, "complete_sum1": 64, "prf_types": 1},
+    "M2": {"tagged": 512, "formal": 128, "local": 96, "cross": 32, "prf_hd1": 32, "complete_sum1": 96, "prf_types": 2},
+    "M3": {"tagged": 960, "formal": 256, "local": 128, "cross": 128, "prf_hd1": 128, "complete_sum1": 128, "prf_types": 13}
+  }
+}

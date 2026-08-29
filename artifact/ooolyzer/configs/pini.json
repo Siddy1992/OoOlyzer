@@ -1,0 +1,86 @@
+{
+  "analysis": {
+    "mode": "pini",
+    "kind": "basic",
+    "width": 32,
+    "skip_iters": 1,
+    "max_iters": 32,
+    "min_recurrence": 1,
+    "complete": true,
+    "include_cross_iteration": false
+  },
+  "composition": [
+    "G1",
+    "LIN",
+    "G2"
+  ],
+  "domains": {
+    "D0": [
+      "A0",
+      "B0",
+      "D0",
+      "E0"
+    ],
+    "D1": [
+      "A1",
+      "B1",
+      "D1",
+      "E1"
+    ]
+  },
+  "models": [
+    "PRF_HD1",
+    "COMPLETE_SUM1"
+  ],
+  "gem5": {
+    "prf": 36,
+    "rob": 128,
+    "iq": "default",
+    "width": 4,
+    "clk": "2.5GHz"
+  },
+  "iterations": 64,
+  "sweep_prfs": [
+    36,
+    40,
+    44,
+    48,
+    52,
+    56,
+    64,
+    72,
+    80,
+    96,
+    128,
+    192
+  ],
+  "expected_baseline": {
+    "1": {
+      "dynamic_tagged_insts": 448,
+      "formal_violations": 96,
+      "local_violations": 96,
+      "cross_composition_violations": 0,
+      "prf_hd1_violation_rows": 32,
+      "complete_sum1_violation_rows": 64,
+      "distinct_prf_transition_types": 1
+    },
+    "2": {
+      "dynamic_tagged_insts": 512,
+      "formal_violations": 128,
+      "local_violations": 96,
+      "cross_composition_violations": 32,
+      "prf_hd1_violation_rows": 32,
+      "complete_sum1_violation_rows": 96,
+      "distinct_prf_transition_types": 2
+    },
+    "3": {
+      "dynamic_tagged_insts": 960,
+      "formal_violations": 256,
+      "local_violations": 128,
+      "cross_composition_violations": 128,
+      "prf_hd1_violation_rows": 128,
+      "complete_sum1_violation_rows": 128,
+      "distinct_prf_transition_types": 13
+    }
+  }
+}

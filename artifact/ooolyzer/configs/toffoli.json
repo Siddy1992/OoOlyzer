@@ -1,0 +1,65 @@
+{
+  "arch_map": {
+    "10": "a_s0",
+    "13": "a_s1",
+    "11": "b_s0",
+    "14": "b_s1",
+    "12": "c_s0",
+    "15": "c_s1"
+  },
+  "conflicts": [
+    [
+      "a_s0",
+      "a_s1"
+    ],
+    [
+      "b_s0",
+      "b_s1"
+    ],
+    [
+      "c_s0",
+      "c_s1"
+    ]
+  ],
+  "reused_registers": {
+    "5": "t0_crossproduct"
+  },
+  "analysis": {
+    "mode": "ril",
+    "width": 32,
+    "strict": true,
+    "min_hd": 1,
+    "filter_conflicts": true
+  },
+  "gem5": {
+    "prf": 36,
+    "rob": 64,
+    "iq": 16,
+    "width": 4,
+    "clk": "2GHz",
+    "l1i": "32KiB",
+    "l1d": "32KiB",
+    "l2": "512KiB",
+    "mem": "512MiB"
+  },
+  "expected": {
+    "inorder_conflicts": 0,
+    "channels": {
+      "10-13": {
+        "count": 1999,
+        "hd_max": 32,
+        "hd_mean": 32.0
+      },
+      "11-14": {
+        "count": 1999,
+        "hd_max": 32,
+        "hd_mean": 32.0
+      },
+      "12-15": {
+        "count": 3998,
+        "hd_max": 16,
+        "hd_mean": 14.0
+      }
+    }
+  }
+}
